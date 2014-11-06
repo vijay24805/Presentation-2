@@ -1,0 +1,72 @@
+
+Please Follow these steps to Install Cassandra Database System and cassanra python driver in your machine with Linux.
+
+
+1)Please open the command prompt and type in
+
+$sudo vim /etc/apt/sources.list
+ 
+ Add the following sources at the bootom of source.list file:
+ 
+deb http://www.apache.org/dist/cassandra/debian 20x main
+deb-src http://www.apache.org/dist/cassandra/debian 20x main
+
+
+2) Type in $sudo apt-get update
+
+This will give you a warning about not being able to verify the signatures of the apache repos:
+
+GPG error: http://www.apache.org unstable Release:
+The following signatures couldn't be verified because the public key is not available:
+NO_PUBKEY 4BD736A82B5C1B00
+
+
+3)Now do the following for that key:
+
+$gpg --keyserver pgp.mit.edu --recv-keys 4BD736A82B5C1B00
+$gpg --export --armor 4BD736A82B5C1B00 | sudo apt-key add -
+
+Also add this one:
+
+$gpg --keyserver pgp.mit.edu --recv-keys 2B5C1B00
+$gpg --export --armor 2B5C1B00 | sudo apt-key add -
+
+
+4)Now run apt-get update again.
+$sudo apt-get update
+
+5)The error should be gone. Now check that all is working and UBuntu can see Cassandra 2.0:
+
+apt-cache showpkg cassandra
+Package: cassandra
+Versions:
+2.0.1
+
+
+6)Now use below command to install cassandra:
+
+$sudo apt-get install cassandra
+
+
+7)Start Cassandra by:
+
+$sudo cassandra
+
+
+8)Your Cassandra server will be up and runnning in your local host.
+
+9)Cassandra supports python driver. To install cassandra python driver type in the following command:
+
+Through pip install:
+
+$pip install cassandra-driver
+
+
+10) Start the server by:
+
+ $sudo cassandra
+
+
+11)run the python file which creates,inserts and selects the table and display the output in terminal.
+
+$python cassandra_CQLdemo.py
